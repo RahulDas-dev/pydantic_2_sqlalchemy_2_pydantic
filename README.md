@@ -2,14 +2,6 @@
 
 This project demonstrates a custom SQLAlchemy column type that allows you to save and load Pydantic models directly in your SQLAlchemy database. It simplifies the process of storing and retrieving complex data structures in your database without manual conversion to JSON or dictionaries.
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Examples](#examples)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Introduction
 
 In many projects, you might have complex data structures represented using Pydantic models. This custom SQLAlchemy column type, `PydanticModelType`, enables you to store Pydantic model instances in your SQLAlchemy database. When you save data, it automatically serializes the Pydantic model to JSON, and when you retrieve data, it deserializes the JSON back to the Pydantic model.
@@ -34,12 +26,14 @@ Here's an example of how to use this custom SQLAlchemy column type:
 
 ```python
 # Define a Pydantic model
-class PydanticModel(BaseModel):
+# kindly check `src/pydantic_model.py`
+class PydanticModel(BaseModel):  
     attr1: str
     attr2: int
     attr3: List[Another_Pydantic_Model]
 
 # Create an SQLAlchemy model that uses PydanticModelType
+# Kindly check `src/orms.py`
 class ExampleModel(Base):
     # ...
     fiel21: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
@@ -48,4 +42,4 @@ class ExampleModel(Base):
         PydanticColumn(PydanticModel), nullable=True
     )
 
-kindly check `dbio.py` for same  
+kindly check `dbio.py` for insert and select script  
