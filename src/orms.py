@@ -3,7 +3,7 @@ from typing import Optional
 from sqlalchemy import Enum, MetaData, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-from src.pydantic_column_type import PydanticColumn
+from src.custom_pydantic_column import PydanticColumn
 from src.pydantic_model import DatasetDescriptor, ProjecStatus, ProjecType
 
 meta = MetaData()
