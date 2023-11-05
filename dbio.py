@@ -2,13 +2,19 @@ import os
 import logging
 from typing import Dict, Optional
 
-from sqlalchemy import URL, create_engine, insert, select 
+from sqlalchemy import URL, create_engine, insert, select
 from sqlalchemy.orm import Session, sessionmaker
 
 from src.orms import Projects
-from src.pydantic_model import (ColumnsDescription, ColumnType,
-                                DatasetDescriptor, Dtypes, ImputationScheme,
-                                ProjecStatus, ProjecType)
+from src.pydantic_model import (
+    ColumnsDescription,
+    ColumnType,
+    DatasetDescriptor,
+    Dtypes,
+    ImputationScheme,
+    ProjecStatus,
+    ProjecType,
+)
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(message)s",
@@ -33,7 +39,7 @@ def insert_project(db: Session, object_in: Dict) -> Optional[Projects]:
         logger.info(f"Session id {id(db)}| Sucessfully inserted, id {data.id}")
     finally:
         return data
-    
+
 
 def select_project(db: Session, project_id: int) -> Optional[Projects]:
     query_stmt = select(Projects).where(Projects.id == project_id)
@@ -48,7 +54,7 @@ def select_project(db: Session, project_id: int) -> Optional[Projects]:
     else:
         logger.info(f"Session id {id(db)}| Sucessfully Selected, id {data.id}")
     finally:
-        return data    
+        return data
 
 
 if __name__ == "__main__":
@@ -72,7 +78,7 @@ if __name__ == "__main__":
             )
         ],
     )
-    logger.info(f'dataset {dataset.model_dump()}')
+    logger.info(f"dataset {dataset.model_dump()}")
     object_in = {
         "title": "Example Project 1",
         "descriptions": "Example Project 1 description",
@@ -87,7 +93,7 @@ if __name__ == "__main__":
     Session = sessionmaker(engine)
     with Session.begin() as session:
         data = insert_project(db=session, object_in=object_in)
-        
-        # logger.info(f'data {data}') 
-        project = select_project(db=session, project_id=data.id)   
-        logger.info(f'dataset_info {project.ptype}, {project.dataset_info}') 
+
+        # logger.info(f'data {data}')
+        project = select_project(db=session, project_id=data.id)
+        logger.info(f"dataset_info {project.ptype}, {project.dataset_info}")
