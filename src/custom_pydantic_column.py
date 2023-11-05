@@ -10,11 +10,10 @@ class PydanticColumn(TypeDecorator):
     PydanticColumn type.
     * for custom column type implementation check https://docs.sqlalchemy.org/en/20/core/custom_types.html
     * Uses sqlalchemy.dialects.postgresql.JSONB if dialects == postgresql else generic sqlalchemy.types.JSON
-    SAVING:
-        - Uses SQLAlchemy JSON type under the hood.
+    * Saving:
         - Acceps the pydantic model and converts it to a dict on save.
         - SQLAlchemy engine JSON-encodes the dict to a string.
-    RETRIEVING:
+    * Loading:
         - Pulls the string from the database.
         - SQLAlchemy engine JSON-decodes the string to a dict.
         - Uses the dict to create a pydantic model.
