@@ -97,3 +97,4 @@ if __name__ == "__main__":
         # logger.info(f'data {data}')
         project = select_project(db=session, project_id=data.id)
         logger.info(f"dataset_info {project.ptype}, {project.dataset_info}")
+        

@@ -1,8 +1,7 @@
 import logging
 import os
 
-from sqlalchemy import URL, create_engine
-
+from sqlalchemy import create_engine, URL, Insert
 from src.orms import meta
 
 logging.basicConfig(
@@ -27,6 +26,12 @@ def _create_tables() -> None:
         return_code = meta.create_all(connection, checkfirst=True)
         logger.info(f"return_code {return_code}")
     engine.dispose()
+
+
+def _insert_entry() -> None:
+    Insert
+
+
 
 
 if __name__ == "__main__":

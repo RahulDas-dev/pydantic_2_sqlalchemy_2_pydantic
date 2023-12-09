@@ -36,9 +36,9 @@ class PydanticColumn(TypeDecorator):
             return dialect.type_descriptor(JSON())
 
     def process_bind_param(self, value, dialect):
-        # return value.dict() if value else None
+        # return value.dict() if value else None   # pydantic <2.0.0
         return value.model_dump() if value else None
 
     def process_result_value(self, value, dialect):
-        # return parse_obj_as(self.pydantic_type, value) if value else None
+        # return parse_obj_as(self.pydantic_type, value) if value else None # pydantic < 2.0.0
         return TypeAdapter(self.pydantic_type).validate_python(value)

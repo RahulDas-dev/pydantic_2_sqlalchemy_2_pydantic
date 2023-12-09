@@ -2,7 +2,7 @@
 
 ![screen shot](./Screenshot.png)
 
-This repo demonstrates a custom SQLAlchemy column type that allows you to save and load Pydantic models directly in your SQLAlchemy database. It simplifies the process of storing and retrieving complex data structures in your database without manual conversion to JSON or dictionaries.
+This repo demonstrates a custom SQLAlchemy column type that allows you to save and load Pydantic models directly in your SQLAlchemy database. It simplifies the process of storing and retrieving complex pydantic data models in your database without manual conversion to JSON or dictionaries.
 
 ## Introduction
 
